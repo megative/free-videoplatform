@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoPlatform - Видеозвонки</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎥 VideoPlatform</h1>
+            <p>Простая платформа для видеозвонков</p>
+        </header>
+
+        <div id="join-section" class="section">
+            <div class="join-form">
+                <h2>📞 Присоединиться к звонку</h2>
+                <div class="input-group">
+                    <input type="text" id="room-id" placeholder="🔢 Введите ID комнаты или оставьте пустым для новой">
+                    <button id="join-btn">🚀 Присоединиться</button>
+                </div>
+                <p class="hint subtle">💡 Оставьте поле пустым — мы создадим новую комнату</p>
+            </div>
+        </div>
+
+        <!-- Экран подтверждения перед входом в комнату -->
+        <div id="prejoin-section" class="section" style="display: none;">
+            <div class="join-form">
+                <h2>🤝 Подтверждение входа</h2>
+                <div class="room-id-section">
+                    <p><strong>ID комнаты:</strong> <span id="prejoin-room-id" class="room-id-badge"></span></p>
+                    <p class="room-share-text">Вы можете скопировать ссылку и отправить собеседнику:</p>
+                </div>
+                <div class="link-container">
+                    <input type="text" id="prejoin-share-link" readonly placeholder="Ссылка для подключения">
+                    <button id="prejoin-copy-btn">📋 Копировать</button>
+                </div>
+                <div class="room-actions">
+                    <button id="prejoin-join-btn">▶️ Войти в комнату</button>
+                    <button id="prejoin-back-btn" class="secondary-btn">⬅️ Назад</button>
+                </div>
+                <p class="hint">🔔 При входе браузер запросит доступ к камере и микрофону</p>
+            </div>
+        </div>
+
+        <div id="video-section" class="section" style="display: none;">
+            <!-- Верхняя панель как в Meet -->
+            <div class="topbar" id="topbar" aria-hidden="true">
+                <div class="topbar-left">
+                    <span class="badge" id="room-code-badge">ROOM</span>
+                </div>
+                <div class="topbar-right">
+                    <button id="copy-room-link-top" class="chip" title="Скопировать ссылку">🔗 Пригласить</button>
+                </div>
+            </div>
+            <div class="video-container">
+                <div class="video-grid">
+                    <div class="video-wrapper local">
+                        <video id="local-video" autoplay muted playsinline></video>
+                        <div class="video-label">Вы</div>
+                    </div>
+                    <div class="video-wrapper remote">
+                        <video id="remote-video" autoplay playsinline></video>
+                        <div class="video-label">Участник</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls" id="controls">
+                <button id="mute-btn" class="control-btn">🔇</button>
+                <button id="video-btn" class="control-btn">📹</button>
+                <button id="reconnect-btn" class="control-btn reconnect">🔄</button>
+                <button id="copy-room-link-btn" class="control-btn" title="Скопировать ссылку">🔗</button>
+                <button id="hangup-btn" class="control-btn hangup">📞</button>
+            </div>
+
+            <div class="status">
+                <p id="connection-status">Подключение...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

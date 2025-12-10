@@ -1,0 +1,27 @@
+# Зависимости
+tests/
+node_modules/
+npm-debug.log*
+
+# Переменные окружения
+.env
+
+# SSL сертификаты
+ssl/
+/etc/letsencrypt/
+
+# Логи
+*.log
+
+# Временные файлы
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker
+.dockerignore
